@@ -38,10 +38,10 @@
 .about{
   width: 700px;
   height: 50px;
+  margin-left: 5.8rem;
   font-size: 15px;
   resize: none;  /*禁止textarea拖动改变输入框大小*/
 }
-
 
 .pic_position{
   height: 10%;
@@ -76,7 +76,7 @@
 }
 .butt{
   border:none;
-  background-color: rgba(0, 217, 255, 0.95);
+  background-color: rgb(22,155,213);
   height: 30px;width: 90px;
   margin-left: 30%;
   border-radius: 5px;

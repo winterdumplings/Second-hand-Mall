@@ -1,0 +1,34 @@
+[
+	{
+		"commentid": 2,
+		"itemid": 2,
+		"userid": "10003",
+		"comment": "好好好",
+		"datetime": "2022-11-22 14:55:18",
+		"itemname": "手机"
+	},
+	{
+		"commentid": 1,
+		"itemid": 1,
+		"userid": "10001",
+		"comment": "哈哈哈",
+		"datetime": "2022-11-19 04:00:21",
+		"itemname": "huawei"
+	},
+	{
+		"commentid": 3,
+		"itemid": 1,
+		"userid": "10002",
+		"comment": "呵呵呵",
+		"datetime": "2022-11-14 14:55:44",
+		"itemname": "huawei"
+	},
+	{
+		"commentid": 4,
+		"itemid": null,
+		"userid": "00001",
+		"comment": "受不了了",
+		"datetime": "2022-11-14 14:55:42",
+		"itemname": null
+	}
+]

@@ -103,7 +103,7 @@ window.onload = function(){
           addLi("commodity_list_qiu",res[i].ritemid,src.itempicture,"","",res[i].ritemname)
         }else{
           src = "../../image/增加图片例图.png"
-          addLi("commodity_list_qiu",res[i].itemid,src,"","",res[i].ritemname)
+          addLi("commodity_list_qiu",res[i].ritemid,src,"","",res[i].ritemname)
         }  
       } 
     }
@@ -126,9 +126,9 @@ window.onload = function(){
     })
 }
 
-$("#add_cart").onclick = function(){
-  var itemid = $.parentNode;
-  console.log(itemid)
+// $("#add_cart").onclick = function(){
+//   var itemid = $.parentNode;
+//   console.log(itemid)
   // $.ajax({
   //   'url':"http://127.0.0.1:5500/WEB-INF/templates/itemid.json",
   //   'type':'POST',
@@ -138,7 +138,7 @@ $("#add_cart").onclick = function(){
   //   // 'dataType':'json',
   //   'success':"success",
   // })
-}
+// }
 
 //用createElement创建li元素，再通过setAttribute设置元素属性，最后通过appendChild()方法添加在父元素的最后一个子节点上。
  //创建li标签，包含显示姓名，邮箱，电话号码及删除按钮
@@ -158,15 +158,17 @@ function addLi(ul_id,itemid,src,price,area,desc){
   As.A1.appendChild(Divs.Div2)
   As.A1.appendChild(spans.span3)
   if(ul_id=="commodity_list_qiu"){
+    As.A1.setAttribute("href","../../WEB-INF/templates/rePurchaseDt.html?itemid="+itemid.toString());
     li_1.appendChild(As.A1)
     document.getElementById(ul_id).appendChild(li_1);
   }else{
-    var p_1 = document.createElement("p");
-    p_1.setAttribute("class","buy")
-    spans.span4.setAttribute("class","add_cart")
-    As.A2.appendChild(spans.span4)
-    p_1.appendChild(As.A2)
-    As.A1.appendChild(As.A2)
+  //   var p_1 = document.createElement("p");
+  //   p_1.setAttribute("class","buy")
+  //   spans.span4.setAttribute("class","add_cart")
+  //   As.A2.appendChild(spans.span4)
+  //   p_1.appendChild(As.A2)
+  //   As.A1.appendChild(As.A2)
+    As.A1.setAttribute("href","../../WEB-INF/templates/reSellDt.html?itemid="+itemid.toString());
     li_1.appendChild(As.A1)
     document.getElementById(ul_id).appendChild(li_1);
   } 
@@ -176,6 +178,8 @@ function createA(){
   var A1=document.createElement("a");
   var A2=document.createElement("a");
   A1.setAttribute("class","commodity-item");
+  A1.setAttribute("target","_self");
+  A1.setAttribute("style","display:block;color:#000")
   A2.setAttribute("href","#")
   return {A1:A1,A2:A2};
 }
@@ -192,7 +196,6 @@ function createSpan(text){
   var span2=document.createElement("span");
   var span3=document.createElement("span");
   var span4=document.createElement("span");
-  var span5=document.createElement("span");
   span1.setAttribute("class","price");
   span2.setAttribute("class","area");
   span3.setAttribute("class","desc");
@@ -202,7 +205,7 @@ function createSpan(text){
 
 function addImg(obj,src){
   var Img=document.createElement("Img")
-  Img.setAttribute("style" ,"width:150px;height:150px;");
+  Img.setAttribute("style" ,"width:150px;height:160px;");
   Img.setAttribute("src","../../pictures/"+src)
   obj.appendChild(Img);
 }

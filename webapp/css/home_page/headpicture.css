@@ -32,7 +32,7 @@
 .m_head_l{
   width:20%;
   height: 6%;
-  color: var(--bg-color);
+  color: RGB(200,200,200);
   margin-left: 1rem;
   padding: .5rem .5rem .5rem .5rem;
 }
@@ -40,7 +40,7 @@
 .on{
   width:20%;
   height: 6%;
-  color: RGB(200,200,200);
+  color: var(--bg-color);
   margin-left: 1rem;
   padding: .5rem .5rem .5rem .5rem;
 }
@@ -139,6 +139,9 @@
   font-size: 5px;
 }
 
+.figure{
+  margin-top: 10px;
+}
 
 .price{
   font-size: 1rem;

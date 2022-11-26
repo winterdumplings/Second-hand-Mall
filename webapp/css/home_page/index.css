@@ -185,6 +185,9 @@ a{
 }
 
 .h_link{
+  position: fixed;
+  padding: 5px 0 0 0 ;
+  margin-left: 1rem;
   color: var(--bg-color);
   /* 控制中文字段不能换行，不会因过长进到下一行 */
   white-space: nowrap;

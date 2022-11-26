@@ -50,6 +50,7 @@
     display: block;
     color: #000;
     word-break:break-all;
+    font-size: 15px;
 }
 .goods_picture{
     margin-left: 15px;
@@ -62,7 +63,7 @@
     font-size: 25px;
     width: 95%;
     min-width: 1000px;
-    min-height: 320px;
+    min-height: 170px;
     height: 30%;
     border: 1px solid #000;
     overflow-y:scroll;
@@ -151,8 +152,8 @@
 }
 
 .b_name{
-    padding: 0rem 0rem 0rem 2rem;
-    font-size: 10px;
+    padding: 0rem 0rem 0rem 1.5rem;
+    font-size: 20px;
 }
 
 /* 结算弹窗 (background) */
@@ -184,7 +185,7 @@
   /* 关闭按钮 */
   .close {
     border:none;
-    background-color: rgba(0, 217, 255, 0.95);
+    background-color: rgb(22,155,213);
     height: 30px;width: 80px;
     border-radius: 5px;
     color:aliceblue;

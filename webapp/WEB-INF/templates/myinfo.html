@@ -14,8 +14,8 @@
          a:hover{text-decoration:none; color:#336699;}
           #tab{width:100%; padding:0px;height:150px;margin:0px;}
           #tab ul{list-style:none; height:30px;line-height:30px; border-bottom:1px gainsboro solid;}
-          #tab ul li{background:#FFF;cursor:pointer;float:left;list-style:none;height:29px; text-align: center; width: 130px; line-height:29px;padding:0px 10px; margin:0px 10px; color:black}
-          #tab ul li.on{color: #BBB;}
+          #tab ul li{background:#FFF;cursor:pointer;float:left;list-style:none;height:29px; text-align: center; width: 130px; line-height:29px;padding:0px 10px; margin:0px 10px; color:#BBB}
+          #tab ul li.on{color: black;}
           #tab div{height: auto;width: auto;}
           .hide{display:none;}
        </style>
@@ -153,7 +153,11 @@
                             <input class="info1" id="nickname" placeholder="请输入你的昵称">
                         </p>
                         <p><span class="label" style="color: red;">*<span style="color: black;">校区</span></span>
-                            <input class="info1" id="campus" placeholder="请输入你的校区">
+                            <select id="area_select" style="width:300px;height:40px">
+                                <option value="2">旗山</option>
+                                <option value="3">铜盘</option>
+                                <option value="4" style="display: none;"></option>
+                            </select>
                         </p>
                         <p><span class="label" style="color: white;">*<span style="color: black;">简介</span></span>
                             <textarea class="info2" id="brief" rows="5" warp="virtual"></textarea>

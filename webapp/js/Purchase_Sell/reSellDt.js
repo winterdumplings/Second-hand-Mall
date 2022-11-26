@@ -1,8 +1,9 @@
+
 // 获取弹窗
 var modal = document.getElementById('myModal');
  
 // 打开弹窗的按钮对象
-var btn = document.getElementById("button_link");
+var btn = document.getElementById("button_sale");
  
 // 获取 <span> 元素，用于关闭弹窗
 var span = document.querySelector('.close');
@@ -23,31 +24,46 @@ window.onclick = function(event) {
     }
 }
 
-// 定位到“搜索”按钮
-var searchInp = document.getElementById("send_button")
+// 定位到“发送”按钮
+var sendbtn = document.getElementById("send_button")
 
 // 点击事件
-searchInp.onclick=function(){
-  var mes = search_keyword();
-  addLi("../../webapp(2)/webapp/img/微信图片_20210313134536.jpg","ggggg",mes)
+sendbtn.onclick=function(){
+  var mes = send_words();
+  // 获取商品id
+  var itemid = getQueryString("itemid");
+  // 点击发送按钮后向后端发送留言内容，留言时间
+  // $.ajax({
+  //     'url':"http://localhost:8080/items/add/comment",
+  //     'type':'POST',
+  //     "data":{
+  //       "itemid":itemid,
+  //       "comment":mes
+  //     },
+  //     'dataType':'json',
+  //     'success':function () {
+  //       alert("success");
+  //     },
+  //     error:function (XMLHttpRequest, textStatus, errorThrown) {
+  //       console.log("请求失败")
+  //       alert(XMLHttpRequest.status);
+  //       alert(XMLHttpRequest.readyState);
+  //       alert(textStatus);
+  //     }
+  //   })
 }
-// 添加键盘事件，按回车键开始搜索
-document.onkeydown = function () {
-  if (window.event.keyCode == 13) {
-    search_keyword();
-  }
-}
-// 获取框中的搜索关键词
-function search_keyword() {
+
+// 获取框中的留言
+function send_words() {
   cancelBubble =true;
   var inputDom = document.getElementById("send_input");
-  var key_word = inputDom.value;
-  return key_word
+  var words = inputDom.value;
+  return words;
 }
 
 
-//创建li标签，包含显示姓名，邮箱，电话号码及删除按钮
-function addLi(photo,name,mes){ 
+//创建li标签
+function addLi(photo,name,mes,date){ 
     var li_1=document.createElement("li");
     li_1.setAttribute("class","inf_list")
     var A_1 = createA()
@@ -59,7 +75,7 @@ function addLi(photo,name,mes){
     A_2.appendChild(span_1)
     var span_2 =createSpan()
     span_2.setAttribute("class","user_date")
-    span_2.innerHTML=formatDate();
+    span_2.innerHTML=date;
     var p_1=document.createElement("p");
     var span_3 = createSpan();
     span_3.setAttribute("class","user_message");
@@ -95,11 +111,170 @@ function addImg(obj,srcs){
   obj.appendChild(Img);
 }
 
-function formatDate(){
-    //获取系统当前时间
-    var  date = new  Date();
-    //获取年月日时分秒
-    var str = date.getFullYear()+"-"+(parseInt(date.getMonth())+1)+"-"+
-                date.getDate()+" "+ date.getHours()+":"+ date.getMinutes()+":"+date.getSeconds();
-    return  str;
+
+
+
+// 从URL中获取商品id
+function getQueryString(itemid) {
+  var reg = new RegExp("(^|&)"+ itemid +"=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if(r!=null){
+    return  decodeURI(r[2]);
+  } 
+  return null;
 }
+
+// 加载商品信息
+window.onload = function(){
+  // 获取商品id
+  var itemid = getQueryString("itemid");
+  // 添加图片
+  function addImg(obj,src){
+    var Img=document.createElement("Img");
+    Img.setAttribute("style","width:150px;height:150px;padding:0 0 0 5px");
+    Img.setAttribute("src","../../pictures/"+src);
+    obj.appendChild(Img);
+  }
+  // 从数据库从查找商品信息并导入
+  $.ajax({
+    'url':"http://127.0.0.1:5500/WEB-INF/templates/test2.json",
+    'type':'GET',
+    // 'dataType':'json',
+    'success':function (res) {
+      for(i=0;i<res.length;i++){
+        if(res[i].itemid == itemid){
+          var host = res[i].host;
+          document.getElementsByClassName("goods_det")[0].innerHTML=res[i].itemname;
+          document.getElementsByClassName("goods_way")[0].innerHTML=res[i].type;
+          document.getElementsByClassName("send_date")[0].innerHTML=res[i].datetime;
+          document.getElementsByClassName("b_name")[0].innerHTML=res[i].price;
+          var A_Img = document.getElementsByClassName("owner_image")[0];
+          var srcs = res[i].itempicture
+          if(srcs != null){
+            for(key in srcs)
+            {
+              if(key != "itemid" && srcs[key]!= null){
+                addImg(A_Img,srcs[key])
+              }
+            }
+          }else{
+            srcs = "../../image/增加图片例图.png"
+            addImg(A_Img,srcs)
+          }
+        }  
+      } 
+      // 从数据库从查找用户信息并导入
+      $.ajax({
+        'url':"http://127.0.0.1:5500/WEB-INF/templates/user.json",
+        'type':'GET',
+        // 'dataType':'json',
+        'success':function (res) {
+          for(i=0;i<res.length;i++){
+            if(res[i].user.userid == host){
+              document.getElementById("user_n").innerHTML=res[i].user.name;
+              document.getElementById("user_a").innerHTML=res[i].user.schoolzone;
+              var A_Img = document.getElementById("user_image");
+              var src = res[i].headpicture.headpicture
+              var Img=document.createElement("Img");
+              Img.setAttribute("style","width:20px;height:20px; border-radius: 50%;");
+              if(src != null){
+                Img.setAttribute("src","../../pictures/"+src);
+              }else{
+                src = "../../image/增加图片例图.png"
+                Img.setAttribute("src","../../pictures/"+src);
+              }
+              A_Img.appendChild(Img);
+            }  
+          } 
+        }
+      }) 
+    }
+  })  
+  // 从后端获取到商品评论信息并展示
+  $.ajax({
+    'url':"http://127.0.0.1:5500/WEB-INF/templates/comment.json",
+    'type':'GET',
+    // 'dataType':'json',
+    'success':function (res) {
+      for(i=0;i<res.length;i++){
+        if(res[i].itemid==itemid){
+          var mes = res[i].comment;
+          var userid = res[i].userid;
+          var date = res[i].datetime;
+          // 从数据库从查找用户信息并导入
+          $.ajax({
+            'url':"http://127.0.0.1:5500/WEB-INF/templates/user.json",
+            'type':'GET',
+            // 'dataType':'json',
+            'success':function (res) {
+              for(i=0;i<res.length;i++){
+                if(res[i].user.userid == userid){
+                  var name = res[i].user.name;
+                  var src = "../../pictures/"+res[i].headpicture.headpicture;
+                  addLi(src,name,mes,date)
+                }  
+              } 
+            }
+          }) 
+        }
+      }
+    },
+    error:function (XMLHttpRequest, textStatus, errorThrown) {
+      console.log("请求失败")
+      alert(XMLHttpRequest.status);
+      alert(XMLHttpRequest.readyState);
+      alert(textStatus);
+    }
+  })
+}
+
+// 点击加入购物车后向后端发送商品ID
+// var cartbtn = document.getElementById("button_cart");
+// cartbtn.onclick = function(){
+//   // 获取商品id
+//   var itemid = getQueryString("itemid");
+//   // 向后台发送要加入购物车的商品id
+//   $.ajax({
+//     'url':"http://localhost:8080/items/add/shoppingCart/:itemid",
+//     'type':'POST',
+//     "data":{
+//       "itemid":itemid
+//     },
+//     'dataType':'json',
+//     'success':function () {
+//       alert("success");
+//     },
+//     error:function (XMLHttpRequest, textStatus, errorThrown) {
+//       console.log("请求失败")
+//       alert(XMLHttpRequest.status);
+//       alert(XMLHttpRequest.readyState);
+//       alert(textStatus);
+//     }
+//   })
+// }
+
+// // 点击立即购买后向后端发送商品ID
+// var salebtn = document.getElementById("button_sale");
+// salebtn.onclick = function(){
+//   // 获取商品id
+//   var itemid = getQueryString("itemid");
+//   // 向后台发送要加入购物车的商品id
+//   $.ajax({
+//     'url':"http://localhost:8080/order/add/order",
+//     'type':'POST',
+//     "data":{
+//       "itemid":itemid
+//     },
+//     'dataType':'json',
+//     'success':function () {
+//       alert("success");
+//     },
+//     error:function (XMLHttpRequest, textStatus, errorThrown) {
+//       console.log("请求失败")
+//       alert(XMLHttpRequest.status);
+//       alert(XMLHttpRequest.readyState);
+//       alert(textStatus);
+//     }
+//   })
+// }
+

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>求购详情页面</title>
+    <link rel="shortcut icon" type="image/x-icon"  href="../../img/logo(1).png"></link>
     <link rel="stylesheet" href="../../css/Purchase_Sell/rePurchaseDt.css">
     <link rel="stylesheet" href="../../css/home_page/index.css">
 </head>
@@ -86,9 +87,6 @@
         <div class="head_list" id="h_bar">
             <!-- 在此处可增加顶部元素 -->
             <a href="#" class="h_link">
-                <img style = "width:25px;margin-bottom: -5px;margin-left: 1rem;"src="../../img/logo(1).png"/>
-            </a>
-            <a href="#" class="h_link">
                 <span class="h_name">求购商品/详情页面</span>
             </a>
             <a href="#" class="login_link">
@@ -102,31 +100,28 @@
         <div class="m_list"  id ="m_content">
             <div  class="fromds" style="height: 200px;width:95%">
                 <div  class="goods_owner">
-                    <a  href ="../templates/other.html" class="owner_mes">
-                        <img style = "width:20px;height:20px; border-radius: 50%;"src="../../img/微信图片_20210313134536.jpg"/>  
+                    <a  href ="../templates/other.html" class="owner_mes" id="user_image">
+                        <!-- <img style = "width:20px;height:20px; border-radius: 50%;"src="../../img/微信图片_20210313134536.jpg"/>   -->
                     </a>
                     <a href="../templates/other.html"  class="owner_mes">
-                        <span class="user_name">我是大白菜</span>
+                        <span class="user_name" id="user_n"></span>
                     </a>
                     <a href="#"  class="owner_other">
-                        <span class="user_name">2022-02-02 11:22:11</span>
+                        <span class="send_date"></span>
                     </a>
                     <a  href ="#" class="owner_other">
-                        <span class="user_name">旗山校区</span>
+                        <span class="user_area" id="user_a"></span>
                     </a>
                     
                 </div>
                 <div class ="goods_detail">
                     <a href="#"  class="goods_mes">
-                        <span class="goods_det">啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内啊啊啊啊啊内容内容内容内容内容内</span>
-                    <a>
-                        <label>送货方式：</label>
-                        <span class ="goods_way">卖家送货上门</span>
+                        <span class="goods_det"></span>
                     </a>
                 </div>
                 <div class="goods_picture">
-                    <a  href ="#" class="ower_mes">
-                        <img style = "width:175px;height:175px; "src="../../img/微信图片_20210313134536.jpg"/>  
+                    <a  href ="#" class="owner_image">
+                        <!-- <img style = "width:175px;height:175px; "src="../../img/微信图片_20210313134536.jpg"/>   -->
                     </a>
                 </div>
                 
@@ -159,6 +154,7 @@
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="../../js/home/index.js"></script>
     <script src="../../js/Purchase_Sell/rePurchaseDt.js"></script>
 </html>

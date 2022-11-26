@@ -1,0 +1,14 @@
+{
+	"headpicture": {
+		"userid": "10001",
+		"headpicture": "eddf2555-814b-453f-908e-a5284615786f.jfif"
+	},
+	"user": {
+		"userid": "10001",
+		"password": "1",
+		"phone": "123456",
+		"name": "张三",
+		"schoolzone": "旗山",
+		"introduce": "法外狂徒"
+	}
+}

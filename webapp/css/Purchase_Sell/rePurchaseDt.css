@@ -31,6 +31,15 @@
   color:#000;
 
 }
+
+.ower_image{
+  font-size: 15px;
+  text-decoration: none;
+  float: left; 
+  margin-left: 5px;
+  color:#000;
+}
+
 .owner_other{
   text-decoration: none;
   float: right;
@@ -50,6 +59,7 @@
   display: block;
   color: #000;
   word-break:break-all;
+  font-size: 15px;
 }
 .goods_picture{
   margin-left: 15px;
@@ -62,7 +72,7 @@
   font-size: 25px;
   width: 95%;
   min-width: 1000px;
-  min-height: 320px;
+  min-height: 220px;
   height: 30%;
   border: 1px solid #000;
   overflow-y:scroll;
